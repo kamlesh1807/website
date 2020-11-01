@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Sign in
+{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+        <!--Panel-->
+        <div class="card border-danger mb-3">
+            <div class="card-header text-danger">
+                <p class="card-title">{{ message }}</p>
+            </div>
+        </div>
+        <!--/.Panel-->
+        
+        {% endfor %}
+
+    {% endif %}
+
+<div class="container mt-4">
+    <div class="row">
+
+        
+        <div class="col-md-2"></div>
+
+        <div class="col-md-4">
+
+            <form method="post" class="text-center border border-secondary p-5">
+
+                <p class="h4 mb-4 text-secondary text-center">Sign In</p>
+
+                {% csrf_token %}
+
+                <p>
+                    <p>
+                        <p><input id="id_username" name="username" placeholder="Username" type="text" class="form-control"></p>
+                    </p>
+                    <p>
+                        <p><input id="id_password" name="password" 
+                        placeholder="Password" type="password" class="form-control"></p>
+                    </p>
+                </p>
+                {% if form.errors %}
+                    <p class="text-danger">
+                        Your username and password didn't match. 
+                        Please try again.
+                    </p>
+                {% endif %}
+
+                <!-- {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                          <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                          <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                {% endfor %} -->
+
+                <!-- Sign in button -->
+                <button class="btn btn-secondary btn-block my-4" type="submit">Sign in</button>                
+                <input type="hidden" name="next" value="{{ next }}" />
+                
+                <!-- Register -->
+                <p>Not a member?
+                    <a href="{% url 'users:sign-up' %}">Register</a>
+                </p>
+
+                <!-- Social login -->
+                <p>or sign in with:</p>
+                
+            </form>                
+
+        </div>
+
+        <div class="col-md-2"></div>
+
+    </div>
+</div>
+
+{% endblock %}

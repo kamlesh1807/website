@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Dashboard
+{% endblock %}
+
+{% block content %}
+
+	{% if messages %}
+
+	    {% for message in messages %}
+
+		<!--Panel-->
+		<div class="card border-success mb-3">
+		    <div class="card-header text-danger">
+		        <p class="card-title">{{ message }}</p>
+		    </div>
+		</div>
+		<!--/.Panel-->
+	    
+	    {% endfor %}
+
+	{% endif %}
+	
+<h1> {{ job.title }} </h1>
+<form method="post" enctype="multipart/form-data" action="/job/{{ job.id }}"> 
+	{% csrf_token %}
+	<input type="file" id="files" name="files" multiple/>
+	<input type="submit" value="Upload" />
+	</form>
+
+	{% if resumes|length == 0 %}
+	
+	<h1> No Data Found </h1>
+	
+	{% else %}
+	<h4><span style="color: rgb(2, 11, 19);"> Created jobs :</span></h4>
+	<table class="table ">
+  <thead>
+    <tr style="background-color:rgb(206, 177, 207);">
+      <th scope="col">Email</th>
+      <th scope="col">Matched Skills</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for resume in resumes %}
+    <tr>
+		<td>{{ resume.email}}</td>
+      <td>{{ resume.skills }}</td>
+	  <td>{{ resume.score }}</td>
+	  <td>
+		<form action="{% url 'jobs:resumeDelete' job.id resume.id %}" method="POST">
+		{% csrf_token %}
+		<button type="submit">Delete</button>
+		</form>
+	   </td>
+    </tr>
+  {% endfor %}
+    
+  </tbody>
+</table>
+{% endif %}
+{% endblock content %}

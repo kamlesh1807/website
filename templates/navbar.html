@@ -1,0 +1,72 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark secondary-color mb-5">
+
+<div class="container">
+    <!-- Navbar brand -->
+    <img src="../static/img/logo/logo1.PNG" class="img-rounded" alt="logo" 
+    height="6%"
+    width="6%"
+    style="display:block ;  margin-left: auto; margin-right:2% ;"
+    >
+    <a class="navbar-brand" href="{% url 'users:home' %}">ResumeRanker</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'users:home' %}">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'jobs:jobs' %}">Jobs</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles:profile-edit' user.profile.id %}">Profile</a>
+            </li>
+            {% endif %}
+
+        </ul>
+        <!-- Links -->
+
+        <!-- login and logout buttons -->
+        <div class="my-1 mr-3">
+            {% if user.is_authenticated %}
+            <!-- user icon -->
+                <div class="white-text">
+                   <i class="fa fa-user" aria-hidden="true"></i>
+                   {{ request.user }}
+                   </div>
+                
+        </div>
+        <div class="my-1 mr-3">
+                <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" href="{% url 'logout' %}">Logout</a>
+                </div>
+            {% else %}
+            <div class="my-1 mr-3">
+                <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" >About</a>
+                <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" >Contect</a>        
+                <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" href="{% url 'login' %}">Sign In</a>
+                <a class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" href="{% url 'profiles:profile-signup' %}">Sign Up</a>           
+            {% endif %}
+        </div>        
+    </div>
+    <!-- Collapsible content -->
+
+</div>
+
+</nav>
+<!--/.Navbar-->
