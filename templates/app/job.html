@@ -35,7 +35,7 @@
 	
 	{% else %}
 	<h4><span style="color: rgb(2, 11, 19);"> Created jobs :</span></h4>
-	<table class="table ">
+	<table class="table table-striped" id="job">
   <thead>
     <tr style="background-color:rgb(206, 177, 207);">
       <th scope="col">Email</th>
@@ -70,5 +70,10 @@
     
   </tbody>
 </table>
+<script>
+	$(document).ready(function() {
+	  $('#job').DataTable();
+	} );
+</script>
 {% endif %}
 {% endblock content %}
