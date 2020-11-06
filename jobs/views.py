@@ -70,6 +70,29 @@ def fetchData(resume, skills):
         
         return email, mathcedSkills, data  
 
+    # if resume.name[-4:].lower() == "docx":
+    #     docxReader = docx.Document(resume.file)
+    #     print(len(docxReader.paragraphs))
+    #     fullText = []
+    #     for para in docxReader.paragraphs:
+    #         fullText.append(para.text)
+    #     print(fullText)
+    #     data = '\n'.join(fullText)
+    #     regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    #     email = re.search(regex, data)
+    #     #email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
+    #     mathcedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
+
+    #     return email, mathcedSkills, data
+
+    if resume.name[-4:].lower() == "docx":
+        data = docx2txt.process(resume.file)
+
+        email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
+        mathcedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
+        
+        return email, mathcedSkills, data
+
 
 @login_required
 def resumeDelete(request, jid , rid):
