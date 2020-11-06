@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.core.serializers import serialize
 from django.http import JsonResponse
 import json
-import PyPDF2, re
+import PyPDF2, re, docx2txt
 # Create your views here.
 
 
