@@ -14,4 +14,4 @@ class Resume(models.Model):
     score = models.DecimalField(default=0 , decimal_places=2 , max_digits=4)
     resume_data = models.CharField(max_length=5000)
     #id = models.AutoField(primary_key=True)
-    status = models.CharField(max_length=10)
+    status = models.CharField(default="Not Shared",max_length=10)
