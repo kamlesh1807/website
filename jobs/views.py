@@ -47,8 +47,8 @@ def jobDetail(request, pk):
     
 @login_required
 def jobDelete(request, pk):
-    Jobs.objects.filter(id=pk).delete()
-    jobs = list(Jobs.objects.filter(user=request.user).values())
+    Job.objects.filter(id=pk).delete()
+    jobs = list(Job.objects.filter(user=request.user).values())
     return redirect('/jobs')
     
     #return render(request, 'app/jobs.html',{"jobs":jobs})
