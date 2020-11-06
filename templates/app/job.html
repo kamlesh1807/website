@@ -52,6 +52,14 @@
       <td>{{ resume.skills }}</td>
 	  <td>{{ resume.score }}</td>
 	  <td>
+		<input list="status" name="status">
+		<datalist id="status">
+		  <option value="Selected"></option>
+		  <option value="Rejected"></option>
+		  <option value="Not Shared"></option>
+		</datalist>
+	  </td>
+	  <td>
 		<form action="{% url 'jobs:resumeDelete' job.id resume.id %}" method="POST">
 		{% csrf_token %}
 		<button type="submit">Delete</button>
