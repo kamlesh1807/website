@@ -39,8 +39,8 @@ def jobDetail(request, pk):
         current_job = Job.objects.get(user=request.user,id=pk)
         job = list(Job.objects.filter(user=request.user, id=pk).values())[0]
         for f in request.FILES.getlist('files'):
-            email, mathcedSkills, data = fetchData(f,job['skills'])
-            Resume.objects.create(job=current_job,email=email,skills=mathcedSkills,resume_data=data)
+            email, matchedSkills, data = fetchData(f,job['skills'])
+            Resume.objects.create(job=current_job,email=email,skills=matchedSkills,resume_data=data)
         resumes = list(Resume.objects.filter(job=current_job).values())
         return render(request, 'app/job.html',{"job": job,"resumes":resumes})
 
@@ -66,32 +66,18 @@ def fetchData(resume, skills):
             page = pdfReader.getPage(page)
             data += page.extractText()
         email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
-        mathcedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
+        matchedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
         
-        return email, mathcedSkills, data  
+        return email, matchedSkills, data  
 
-    # if resume.name[-4:].lower() == "docx":
-    #     docxReader = docx.Document(resume.file)
-    #     print(len(docxReader.paragraphs))
-    #     fullText = []
-    #     for para in docxReader.paragraphs:
-    #         fullText.append(para.text)
-    #     print(fullText)
-    #     data = '\n'.join(fullText)
-    #     regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
-    #     email = re.search(regex, data)
-    #     #email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
-    #     mathcedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
-
-    #     return email, mathcedSkills, data
 
     if resume.name[-4:].lower() == "docx":
         data = docx2txt.process(resume.file)
 
         email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
-        mathcedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
+        matchedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
         
-        return email, mathcedSkills, data
+        return email, matchedSkills, data
 
 
 @login_required
