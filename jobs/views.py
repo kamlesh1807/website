@@ -39,8 +39,9 @@ def jobDetail(request, pk):
         current_job = Job.objects.get(user=request.user,id=pk)
         job = list(Job.objects.filter(user=request.user, id=pk).values())[0]
         for f in request.FILES.getlist('files'):
-            email, matchedSkills, data = fetchData(f,job['skills'])
-            Resume.objects.create(job=current_job,email=email,skills=matchedSkills,resume_data=data)
+            exist , email, matchedSkills, data = fetchData(f,job['skills'], pk)
+            if  exist :
+                Resume.objects.create(job=current_job,email=email,skills=matchedSkills,resume_data=data)
         resumes = list(Resume.objects.filter(job=current_job).values())
         return render(request, 'app/job.html',{"job": job,"resumes":resumes})
 
@@ -54,7 +55,7 @@ def jobDelete(request, pk):
     #return render(request, 'app/jobs.html',{"jobs":jobs})
 
 
-def fetchData(resume, skills):
+def fetchData(resume, skills , pk):
     
     skills = skills.split(",")
     data = ""
@@ -67,8 +68,10 @@ def fetchData(resume, skills):
             data += page.extractText()
         email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
         matchedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
-        
-        return email, matchedSkills, data  
+        if Resume.objects.filter(email=email , job=pk).exists():
+            return False , email , matchedSkills , data 
+        else :
+            return True ,email, matchedSkills, data  
 
 
     if resume.name[-4:].lower() == "docx":
@@ -76,8 +79,10 @@ def fetchData(resume, skills):
 
         email = re.search(r'[\w\.-]+@[\w\.-]+', data).group(0)
         matchedSkills = ",".join([skill for skill in skills if skill.lower() in data.lower()])
-        
-        return email, matchedSkills, data
+        if Resume.objects.filter(email=email , job=pk).exists():
+            return False , email , matchedSkills , data 
+        else :
+            return True , email, matchedSkills, data
 
 
 @login_required
