@@ -13,6 +13,5 @@ urlpatterns = [
 
 urlpatterns += [
 	path('account-activation-sent/', account_activation_sent_view, name='account-activation-sent'),
-	path('activate/<uidb64>/<token>/',
-		account_activate, name='activate'),
+	path('activate/<uidb64>/<token>/', account_activate, name='activate'),
 ]

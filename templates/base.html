@@ -20,10 +20,11 @@
     <!-- For datatables -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="{% static 'stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css' %}">
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.pn' %}" rel="apple-touch-icon">
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}" rel="icon">
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js' %}" rel="apple-touch-icon">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-
+    <link href="{% static 'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' %}">
+    <link href="{% static 'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' %}">
     
     <style>
       /*--------------------------------------------------------------
@@ -532,7 +533,49 @@ section {
   }
 }
 
+/*  -----------------edit bio   css --------------*/
 
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: #BA68C8;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+/*  --------------edit bio ends ----------*/
     </style>
     <link href="../static/css/style.css" rel="stylesheet">
   </head>
@@ -542,7 +585,7 @@ section {
       {% include "navbar.html" %}
 
       <!-- Start your project here-->
-      <div style="height: 100vh" class="container">
+      <div style="height: 100vh;" class="container">
 
       	{% block content %}
 
@@ -557,11 +600,11 @@ section {
     <!-- JQuery -->
     <script type="text/javascript" src="{% static '../../../static/js/jquery-3.3.1.min.js' %}"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="{% static '../static/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '../../../static/js/popper.min.js' %}"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="{% static '../static/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '../../../static/js/bootstrap.min.js' %}"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="{% static '../static/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '../../../static/js/mdb.min.js' %}"></script>
     {% block script %}
     {% endblock %}
     
