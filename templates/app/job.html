@@ -3,7 +3,9 @@
 {% block title %}
 	Dashboard
 {% endblock %}
-
+{% block head %}
+<meta http-equiv="refresh" content="20"/>
+{% endblock %}
 {% block content %}
 
 	{% if messages %}
@@ -27,6 +29,9 @@
 	{% csrf_token %}
 	<input type="file" id="files" name="files" multiple/>
 	<input type="submit" value="Upload" />
+
+	<button type="button" id="btn" class=" btn-sm">Score</button>
+
 	</form>
 
 	{% if resumes|length == 0 %}
@@ -34,6 +39,7 @@
 	<h1> No Data Found </h1>
 	
 	{% else %}
+
 	<h4><span style="color: rgb(2, 11, 19);"> Created jobs :</span></h4>
 	<table class="table table-striped" id="job">
   <thead>

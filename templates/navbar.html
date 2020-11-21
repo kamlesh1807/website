@@ -1,11 +1,12 @@
+<div class="c">
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark secondary-color mb-5">
 
-<div class="container">
+
     <!-- Navbar brand -->
     <img src="../static/img/logo/logo1.PNG" class="img-rounded" alt="logo" 
-    height="6%"
-    width="6%"
+    height="3.5%"
+    width="3.5%"
     style="display:block ;  margin-left: auto; margin-right:2% ;"
     >
     <a class="navbar-brand" href="{% url 'users:home' %}">ResumeRanker</a>
@@ -22,7 +23,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             {% if request.user.is_authenticated %}
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{% url 'users:home' %}">Home
                     <span class="sr-only">(current)</span>
                 </a>
@@ -66,7 +67,8 @@
     </div>
     <!-- Collapsible content -->
 
-</div>
+
 
 </nav>
 <!--/.Navbar-->
+</div>

@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    | {% block head %}{% endblock %}
     <title>Resume_Ranker  | {% block title %}{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -605,6 +606,7 @@ section {
     <script type="text/javascript" src="{% static '../../../static/js/bootstrap.min.js' %}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{% static '../../../static/js/mdb.min.js' %}"></script>
+   
     {% block script %}
     {% endblock %}
     
